@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>janicewei | 作品集</title>
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+
+  <!-- 导航 -->
+  <nav id="nav">
+    <a href="#hero" class="nav-logo">janicewei</a>
+    <button class="nav-toggle" aria-label="菜单">
+      <span></span><span></span><span></span>
+    </button>
+    <ul class="nav-links">
+      <li><a href="#ai-works">AI 作品</a></li>
+      <li><a href="#film-works">实拍作品</a></li>
+    </ul>
+  </nav>
+
+  <!-- Hero -->
+  <section id="hero">
+    <div class="hero-inner">
+      <h1>Hi！I'm janicewei<span class="hero-cn">（樊双偎）</span></h1>
+      <p class="hero-sub">广编 / AIGC创作 / 视觉叙事</p>
+    </div>
+  </section>
+
+  <!-- AI 作品 -->
+  <section id="ai-works" class="section">
+    <div class="container">
+      <h2 class="section-title reveal">AI 作品</h2>
+      <div class="grid">
+
+        <div class="card reveal reveal-delay-1" data-title="地狱撒旦" data-media='[{"type":"image","src":"assets/ai/diyuSanta.jpg"},{"type":"video","src":"assets/ai/撒旦1.mp4"},{"type":"video","src":"assets/ai/撒旦2.mp4"}]'>
+          <img src="assets/ai/diyuSanta.jpg" alt="地狱撒旦" loading="lazy">
+          <div class="card-info">
+            <h3>地狱撒旦</h3>
+          </div>
+        </div>
+
+        <div class="card reveal reveal-delay-2" data-title="Can festival回顾" data-media='[{"type":"image","src":"assets/ai/Can.jpg"},{"type":"video","src":"assets/ai/can压缩版.mp4"}]'>
+          <img src="assets/ai/Can.jpg" alt="Can festival回顾" loading="lazy">
+          <div class="card-info">
+            <h3>Can festival回顾</h3>
+          </div>
+        </div>
+
+        <div class="card reveal reveal-delay-1" data-title="AI产品" data-media='[{"type":"image","src":"assets/placeholder/ai-3.svg"}]'>
+          <img src="assets/placeholder/ai-3.svg" alt="AI产品" loading="lazy">
+          <div class="card-info">
+            <h3>AI产品</h3>
+          </div>
+        </div>
+
+        <div class="card reveal reveal-delay-2" data-title="其他" data-media='[{"type":"image","src":"assets/placeholder/ai-4.svg"}]'>
+          <img src="assets/placeholder/ai-4.svg" alt="其他" loading="lazy">
+          <div class="card-info">
+            <h3>其他</h3>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- 实拍作品 -->
+  <section id="film-works" class="section">
+    <div class="container">
+      <h2 class="section-title reveal">实拍作品</h2>
+      <div class="grid">
+
+        <div class="card reveal reveal-delay-1" data-title="足迹" data-media='[{"type":"image","src":"assets/placeholder/film-1.svg"}]'>
+          <img src="assets/placeholder/film-1.svg" alt="足迹" loading="lazy">
+          <div class="card-info">
+            <h3>足迹</h3>
+          </div>
+        </div>
+
+        <div class="card reveal reveal-delay-2" data-title="致富柿子村" data-media='[{"type":"image","src":"assets/film/shizi.jpg"}]'>
+          <img src="assets/film/shizi.jpg" alt="致富柿子村" loading="lazy">
+          <div class="card-info">
+            <h3>致富柿子村</h3>
+          </div>
+        </div>
+
+        <div class="card reveal reveal-delay-1" data-title="咖啡宣传片" data-media='[{"type":"image","src":"assets/placeholder/film-3.svg"}]'>
+          <img src="assets/placeholder/film-3.svg" alt="咖啡宣传片" loading="lazy">
+          <div class="card-info">
+            <h3>咖啡宣传片</h3>
+          </div>
+        </div>
+
+        <div class="card reveal reveal-delay-2" data-title="其他作品" data-media='[{"type":"image","src":"assets/placeholder/film-4.svg"}]'>
+          <img src="assets/placeholder/film-4.svg" alt="其他作品" loading="lazy">
+          <div class="card-info">
+            <h3>其他作品</h3>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer>
+    <a href="mailto:janicewei2005@gmail.com" class="footer-email">janicewei2005@gmail.com</a>
+    <p class="footer-copy">&copy; 2026 janicewei</p>
+  </footer>
+
+  <!-- 模态框 -->
+  <div id="modal" class="modal" role="dialog" aria-hidden="true">
+    <button class="modal-close" aria-label="关闭">&times;</button>
+    <div class="modal-viewer">
+      <img class="modal-img" src="" alt="">
+      <video class="modal-video" src="" controls playsinline></video>
+    </div>
+    <button class="modal-prev" aria-label="上一个">&lsaquo;</button>
+    <button class="modal-next" aria-label="下一个">&rsaquo;</button>
+    <div class="modal-info">
+      <h3 class="modal-title"></h3>
+      <p class="modal-desc"></p>
+      <span class="modal-counter"></span>
+    </div>
+  </div>
+
+  <script src="js/main.js"></script>
+</body>
+</html>
