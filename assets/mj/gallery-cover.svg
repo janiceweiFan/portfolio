@@ -1,0 +1,8 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="800" height="1000" viewBox="0 0 800 1000">
+  <defs><linearGradient id="g" x1="0%" y1="0%" x2="100%" y2="100%">
+    <stop offset="0%" stop-color="#555"/><stop offset="100%" stop-color="#333"/>
+  </linearGradient></defs>
+  <rect width="800" height="1000" fill="url(#g)"/>
+  <text x="400" y="480" font-family="sans-serif" font-size="36" fill="rgba(255,255,255,0.4)" text-anchor="middle" dominant-baseline="middle">MJ</text>
+  <text x="400" y="530" font-family="sans-serif" font-size="18" fill="rgba(255,255,255,0.25)" text-anchor="middle" dominant-baseline="middle">图集</text>
+</svg>

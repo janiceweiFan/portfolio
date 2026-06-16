@@ -75,6 +75,7 @@ const modalDesc = modal.querySelector('.modal-desc');
 const modalCounter = modal.querySelector('.modal-counter');
 const modalPrev = modal.querySelector('.modal-prev');
 const modalNext = modal.querySelector('.modal-next');
+const mjGallery = document.getElementById('mj-gallery');
 
 let mediaList = [];
 let mediaIndex = 0;
@@ -119,14 +120,17 @@ function openModal(card) {
 function closeModal() {
   modal.classList.remove('open');
   modal.setAttribute('aria-hidden', 'true');
-  document.body.style.overflow = '';
+  document.body.style.overflow = mjGallery.classList.contains('open') ? 'hidden' : '';
   modalVideo.pause();
   modalVideo.removeAttribute('src');
   modalImg.removeAttribute('src');
 }
 
 document.querySelectorAll('.card').forEach(card => {
-  card.addEventListener('click', () => openModal(card));
+  card.addEventListener('click', () => {
+    if (card.dataset.gallery) return;
+    openModal(card);
+  });
 });
 
 modal.querySelector('.modal-close').addEventListener('click', closeModal);
@@ -146,8 +150,142 @@ modalNext.addEventListener('click', e => {
 });
 
 document.addEventListener('keydown', e => {
-  if (!modal.classList.contains('open')) return;
-  if (e.key === 'Escape') closeModal();
-  if (e.key === 'ArrowLeft' && mediaIndex > 0) { mediaIndex--; showMedia(mediaIndex); }
-  if (e.key === 'ArrowRight' && mediaIndex < mediaList.length - 1) { mediaIndex++; showMedia(mediaIndex); }
+  if (modal.classList.contains('open')) {
+    if (e.key === 'Escape') closeModal();
+    if (e.key === 'ArrowLeft' && mediaIndex > 0) { mediaIndex--; showMedia(mediaIndex); }
+    if (e.key === 'ArrowRight' && mediaList.length && mediaIndex < mediaList.length - 1) { mediaIndex++; showMedia(mediaIndex); }
+    return;
+  }
+  if (mjGallery.classList.contains('open')) {
+    if (e.key === 'Escape') {
+      if (currentCollection) closeCollection();
+      else closeMjGallery();
+    }
+  }
+});
+
+// ===== MJ Gallery =====
+const mjCollections = mjGallery.querySelector('.mj-collections');
+const mjDetail = mjGallery.querySelector('.mj-detail');
+const mjDetailBack = mjDetail.querySelector('.mj-detail-back');
+const mjDetailTitle = mjDetail.querySelector('.mj-detail-title');
+const mjDetailGrid = mjDetail.querySelector('.mj-detail-grid');
+const collectionCards = mjGallery.querySelectorAll('.mj-collection-card');
+
+const collections = {
+  menghe: {
+    title: '梦核宝丽莱',
+    images: [
+      { type: 'image', src: 'assets/mj/梦核1.png' },
+      { type: 'image', src: 'assets/mj/梦核2.png' },
+      { type: 'image', src: 'assets/mj/梦核3.png' },
+      { type: 'image', src: 'assets/mj/宝丽莱1.png' },
+      { type: 'image', src: 'assets/mj/宝丽莱2.png' },
+      { type: 'image', src: 'assets/mj/宝丽莱3.png' }
+    ]
+  },
+  shuiguang: {
+    title: '水光入夏',
+    images: [
+      { type: 'image', src: 'assets/mj/水光1.png' },
+      { type: 'image', src: 'assets/mj/水光2.png' },
+      { type: 'image', src: 'assets/mj/水光3.png' },
+      { type: 'image', src: 'assets/mj/水光4.png' },
+      { type: 'image', src: 'assets/mj/水光5.png' },
+      { type: 'image', src: 'assets/mj/水光6.png' }
+    ]
+  }
+};
+
+let currentCollection = null;
+
+function openMjGallery() {
+  mjGallery.classList.add('open');
+  mjGallery.setAttribute('aria-hidden', 'false');
+  document.body.style.overflow = 'hidden';
+
+  mjCollections.classList.remove('hidden');
+  mjDetail.classList.remove('active');
+  currentCollection = null;
+
+  // 触发旋转进入动画
+  collectionCards.forEach(card => {
+    card.classList.remove('animate-in');
+    void card.offsetWidth;
+    card.classList.add('animate-in');
+  });
+}
+
+function closeMjGallery() {
+  mjGallery.classList.remove('open');
+  mjGallery.setAttribute('aria-hidden', 'true');
+  document.body.style.overflow = '';
+  collectionCards.forEach(card => card.classList.remove('animate-in'));
+  currentCollection = null;
+}
+
+function openCollection(key) {
+  const col = collections[key];
+  if (!col) return;
+  currentCollection = key;
+
+  // 切换视图：合集 → 详情
+  mjCollections.classList.add('hidden');
+  mjDetail.classList.add('active');
+  mjDetailTitle.textContent = col.title;
+
+  // 生成缩略图
+  mjDetailGrid.innerHTML = '';
+  col.images.forEach((img, i) => {
+    const thumb = document.createElement('div');
+    thumb.className = 'mj-thumb';
+    const imgEl = document.createElement('img');
+    imgEl.src = img.src;
+    imgEl.alt = col.title + ' ' + (i + 1);
+    imgEl.loading = 'lazy';
+    thumb.appendChild(imgEl);
+
+    thumb.addEventListener('click', () => {
+      mediaList = col.images;
+      mediaIndex = i;
+      modalTitle.textContent = col.title;
+      modalDesc.textContent = '';
+      showMedia(i);
+      modal.classList.add('open');
+      modal.setAttribute('aria-hidden', 'false');
+    });
+
+    mjDetailGrid.appendChild(thumb);
+  });
+}
+
+function closeCollection() {
+  mjDetail.classList.remove('active');
+  mjCollections.classList.remove('hidden');
+  currentCollection = null;
+
+  // 重新触发旋转进入
+  collectionCards.forEach(card => {
+    card.classList.remove('animate-in');
+    void card.offsetWidth;
+    card.classList.add('animate-in');
+  });
+}
+
+// "其他的部分"卡片点击
+document.querySelectorAll('.card[data-gallery="mj"]').forEach(card => {
+  card.addEventListener('click', () => openMjGallery());
+});
+
+// 合集卡片点击
+collectionCards.forEach(card => {
+  card.addEventListener('click', () => openCollection(card.dataset.collection));
+});
+
+mjDetailBack.addEventListener('click', closeCollection);
+
+mjGallery.querySelector('.mj-gallery-close').addEventListener('click', closeMjGallery);
+
+mjGallery.addEventListener('click', e => {
+  if (e.target === mjGallery) closeMjGallery();
 });
