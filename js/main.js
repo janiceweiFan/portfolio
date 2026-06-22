@@ -176,23 +176,23 @@ const collections = {
   menghe: {
     title: '梦核宝丽莱',
     images: [
-      { type: 'image', src: 'assets/mj/梦核1.png' },
-      { type: 'image', src: 'assets/mj/梦核2.png' },
-      { type: 'image', src: 'assets/mj/梦核3.png' },
-      { type: 'image', src: 'assets/mj/宝丽莱1.png' },
-      { type: 'image', src: 'assets/mj/宝丽莱2.png' },
-      { type: 'image', src: 'assets/mj/宝丽莱3.png' }
+      { type: 'image', src: 'assets/mj/梦核1.jpg' },
+      { type: 'image', src: 'assets/mj/梦核2.jpg' },
+      { type: 'image', src: 'assets/mj/梦核3.jpg' },
+      { type: 'image', src: 'assets/mj/宝丽莱1.jpg' },
+      { type: 'image', src: 'assets/mj/宝丽莱2.jpg' },
+      { type: 'image', src: 'assets/mj/宝丽莱3.jpg' }
     ]
   },
   shuiguang: {
     title: '水光入夏',
     images: [
-      { type: 'image', src: 'assets/mj/水光1.png' },
-      { type: 'image', src: 'assets/mj/水光2.png' },
-      { type: 'image', src: 'assets/mj/水光3.png' },
-      { type: 'image', src: 'assets/mj/水光4.png' },
-      { type: 'image', src: 'assets/mj/水光5.png' },
-      { type: 'image', src: 'assets/mj/水光6.png' }
+      { type: 'image', src: 'assets/mj/水光1.jpg' },
+      { type: 'image', src: 'assets/mj/水光2.jpg' },
+      { type: 'image', src: 'assets/mj/水光3.jpg' },
+      { type: 'image', src: 'assets/mj/水光4.jpg' },
+      { type: 'image', src: 'assets/mj/水光5.jpg' },
+      { type: 'image', src: 'assets/mj/水光6.jpg' }
     ]
   }
 };
